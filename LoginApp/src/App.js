@@ -1,11 +1,20 @@
 import React from 'react';
 import { View } from 'react-native';
-import LoginForm from './components/LoginForm';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+
+import reducers from './reducers';
+
+// import LoginScreen from './components/LoginScreen';
+import Router from './Router';
+
+const store = createStore(reducers, {}, applyMiddleware(thunk));
 
 const App = () => (
-  <View>
-    <LoginForm />
-  </View>
+  <Provider store={store}>
+    <Router />
+  </Provider>
 );
 
 export default App;
